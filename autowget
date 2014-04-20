@@ -1,0 +1,10 @@
+#!/bin/bash
+
+wget http://www.example.org/path/to/page -O /path/to/local/repo/where/you/wanna/store/the/file/;
+
+sleep 30s; # Gives time for wget to work
+
+(cd /path/to/user.github.io/ && git add --all);
+(cd /path/to/user.github.io/ && git commit -m "new mirror");
+(cd /path/to/user.github.io/ && git push origin master);
+
