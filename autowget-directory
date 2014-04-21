@@ -9,3 +9,7 @@ sleep 1;
 (cd /home/eric/EricLagerg.github.io/ && git commit -m "new mirror");
 (cd /home/eric/EricLagerg.github.io/ && git push origin master);
 
+# This can be used instead if wanted
+# (cd /path/to/user.github.io/ && git add --all && git commit -m "new mirror" && git push origin master); 
+   
+

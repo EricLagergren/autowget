@@ -8,3 +8,6 @@ sleep 30s; # Gives time for wget to work
 (cd /path/to/user.github.io/ && git commit -m "new mirror");
 (cd /path/to/user.github.io/ && git push origin master);
 
+# This can be used instead if wanted
+# (cd /path/to/user.github.io/ && git add --all && git commit -m "new mirror" && git push origin master); 
+
