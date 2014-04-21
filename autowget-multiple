@@ -1,0 +1,11 @@
+#!/bin/bash
+
+(cd /path/to/directory && wget -mkpq --level=5 http://www.example.org);
+mv /path/to/directory/www.example.org/* /path/to/directory/name/you/want;
+
+sleep 1;
+
+(cd /home/eric/EricLagerg.github.io/ && git add --all);
+(cd /home/eric/EricLagerg.github.io/ && git commit -m "new mirror");
+(cd /home/eric/EricLagerg.github.io/ && git push origin master);
+
