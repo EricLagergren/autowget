@@ -1,0 +1,7 @@
+#!/bin/bash
+
+wget http://www.example.org/path/to/page -O /path/to/local/repo/where/you/wanna/store/the/file/;
+
+sleep 30s; # Gives time for wget to work
+
+curl -u user:password -T file ftp://server/dir/file; # Uploads viea ftp if you're not using Git

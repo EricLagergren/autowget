@@ -1,0 +1,8 @@
+#!/bin/bash
+
+(cd /path/to/directory && wget -mkpq --level=5 http://www.example.org);
+mv /path/to/directory/www.example.org/* /path/to/directory/name/you/want;
+
+sleep 60s;
+
+curl -u user:password -T file ftp://server/dir/file; # Uploads via ftp if you're not using git 
