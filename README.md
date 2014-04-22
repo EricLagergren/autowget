@@ -48,6 +48,10 @@ Fill out correct paths to wanted items. Make sure the git command "git push..." 
 
 The names are self-explanitory. autowget will grab one pagee and mirror it. autowget-directory will mirror a whole structure, so you can effectively mirror an entire website. autowget-ftp will use ftp instead of Git. autowget.py does the same thing as the other bash scripts, but uses Python3 (and is much, much faster).
 
+Website not showing up 100% correctly? Try reading here: http://wget.addictivecode.org/FrequentlyAskedQuestions
+
+Web scraping can be difficult, so read that link and tinker with the options. If it doesn't resolve, then it probably cannot be done.
+
 <h1> To-Do List: </h1>
 
 <ul>
