@@ -9,16 +9,27 @@ Uses wget to get webpage and then saves to a file and then pushes changes to you
 <h3> What's needed: </h3>
 <ul>
 <li>Wget</li>
+<li>urllib.request</li>
+<li>shutil</li>
+<li>ftplib</li>
+<li>sh</li>
+<li>os</li>
+<li>sys</li>
+<li>datetime</li>
 </ul>
 
 `git clone https://www.github.com/EricLagerg/autowget.git`
+<p>
 `cd /path/to/autowget/`
+<p>
 `mv autowget /place/where/you/store/scripts/`
+<p>
 `chmod 755 autowget`
 
 Also, in order for the logs to work, you need to 
 
 `cd /var/log/ && touch autowget.log`
+<p>
 `chmod 666 autowget.log`
 
 Permissions aren't set in stone. You'll just need autowget to be writable from whichever user is running the script, and you'll need autowget to be executable by whichever user you want running the script.
