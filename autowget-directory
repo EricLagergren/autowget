@@ -1,15 +1,13 @@
 #!/bin/bash
 
-(cd /path/to/directory && wget -mkpq --level=5 http://www.example.org);
+exec 1>> /var/log/autowget.log 2>&1
+
+(cd /path/to/directory && wget -mkpq  http://www.example.org);
 mv /path/to/directory/www.example.org/* /path/to/directory/name/you/want;
 
-sleep 1;
+(cd /path/to/user.github.io/ && git add --all && git commit -m "new mirror" && git push origin master); 
 
-(cd /home/eric/EricLagerg.github.io/ && git add --all);
-(cd /home/eric/EricLagerg.github.io/ && git commit -m "new mirror");
-(cd /home/eric/EricLagerg.github.io/ && git push origin master);
-
-# This can be used instead if wanted
-# (cd /path/to/user.github.io/ && git add --all && git commit -m "new mirror" && git push origin master); 
+dt=$(date)
+echo $dt $HOSTNAME
    
 

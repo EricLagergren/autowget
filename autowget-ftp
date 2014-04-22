@@ -1,7 +1,10 @@
 #!/bin/bash
 
+exec 1>> /var/log/autowget.log 2>&1
+
 wget http://www.example.org/path/to/page -O /path/to/local/repo/where/you/wanna/store/the/file/;
 
-sleep 30s; # Gives time for wget to work
+curl -u user:password -T file ftp://server/dir/file; # Uploads via ftp if you're not using Git
 
-curl -u user:password -T file ftp://server/dir/file; # Uploads viea ftp if you're not using Git
+dt=$(date)
+echo $dt $HOSTNAME

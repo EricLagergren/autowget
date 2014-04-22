@@ -1,8 +1,11 @@
 #!/bin/bash
 
-(cd /path/to/directory && wget -mkpq --level=5 http://www.example.org);
+exec 1>> /var/log/autowget.log 2>&1
+
+(cd /path/to/directory && wget -mkpq http://www.example.org);
 mv /path/to/directory/www.example.org/* /path/to/directory/name/you/want;
 
-sleep 60s;
-
 curl -u user:password -T file ftp://server/dir/file; # Uploads via ftp if you're not using git 
+
+dt=$(date)
+echo $dt $HOSTNAME
