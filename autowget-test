@@ -1,6 +1,0 @@
-#!/bin/bash
-
-(wget -mpk http://www.samueltscott.com/pierce.html -P ~/EricLagerg.github.io/mirrors/samueltscott/ && mv ~/EricLagerg.github.io/mirrors/samueltscott/www.samueltscott.com/* ~/EricLagerg.github.io/mirrors/samueltscott);
-
-(cd ~/EricLagerg.github.io && git add --all && git commit -m "new mirror" && git push origin master); 
-
