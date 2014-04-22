@@ -9,6 +9,7 @@ Uses wget to get webpage and then saves to a file and then pushes changes to you
 <h3> What's needed: </h3>
 <ul>
 <li>Wget</li>
+<li>Python3</li>
 <li>urllib.request</li>
 <li>shutil</li>
 <li>ftplib</li>
@@ -17,6 +18,10 @@ Uses wget to get webpage and then saves to a file and then pushes changes to you
 <li>sys</li>
 <li>datetime</li>
 </ul>
+
+<h3> Most systems have most of these libraries.</h3>
+
+<h2> To Install </h2>
 
 `git clone https://www.github.com/EricLagerg/autowget.git`
 <p>
