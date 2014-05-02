@@ -34,9 +34,9 @@ Python version: Gets website and saves to a file and then pushes it to your GitH
 
 Also, in order for the logs to work, you need to 
 
-`cd /var/log/ && touch autowget.log`
+`cd /path/to/logs && touch name.of.logfile.log`
 <p>
-`chmod 666 autowget.log`
+`chmod 666 name.of.logfile.log`
 
 Permissions aren't set in stone. You'll just need autowget to be writable from whichever user is running the script, and you'll need autowget to be executable by whichever user you want running the script.
 
@@ -52,9 +52,10 @@ Website not showing up 100% correctly? Try reading here: http://wget.addictiveco
 
 Web scraping can be difficult, so read that link and tinker with the options. If it doesn't resolve, then it probably cannot be done.
 
+<h3>If it's not working shoot me an email at contact@ericlagergren.com or create an issue. Please make sure to include logs. It's hard to troubleshoot without logs. Also include the full source code. Thanks. </h3>
+
 <h1> To-Do List: </h1>
 
 <ul>
-<li>Add email confirmation</li>
 <li>Append fetched URL to master directory list</li>
 </ul>
