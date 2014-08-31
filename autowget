@@ -1,10 +1,11 @@
 #!/bin/bash
 
-exec 1>> /var/log/autowget.log 2>&1
+exec 1 >> /var / log / autowget.log 2 > &1
 
-wget http://www.example.org/path/to/page -O /path/to/local/repo/where/you/wanna/store/the/file/;
+wget http:
+    //www.example.org / path / to / page - O / path / to / local / repo / where / you / wanna / store / the / file/
 
-(cd /path/to/user.github.io/ && git add --all && git commit -m "new mirror" && git push origin master); 
+(cd / path / to / user.github.io / & & git add - -all & & git commit - m "new mirror" & & git push origin master)
 
-dt=$(date)
+dt =$(date)
 echo $dt $HOSTNAME

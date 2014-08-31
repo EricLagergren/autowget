@@ -2,82 +2,103 @@
 ### IMPORTS ###
 ###############
 
-import urllib.request
-import subprocess
-import shutil
+from datetime import datetime
 from ftplib import FTP
+from os import chdir, remove
 import sh
-import os
-import sys
-import datetime
+from shutil	import copyfileobj
+from subprocess import call
+from sys import stdout, stderr
+import urllib.request
 
 
 ######################
 ### FILL VARIABLES ###
 ######################
 
+# A list of URLs you want to fetch
 urls = ['http://www.example.org', 'https://google.com', 'https://wwww.microsoft.com']
-file_path = '/path/to/directory/where/files/will/go'
+
+# Base path to wherever you'd like the files to go
+file_path = '/path/to/directory'
+
+# Path to GitHub 
 repo = '/path/to/github/pages/repository'
-commitMessage = 'new mirror' # Your commit message 
-addAll = '--all' # Adds all tracked files; can change to just one file
-branch = 'master' # Branch you're committing/pushing to
-email = "mutt -s 'Subject' user@host.com < /dev/null" # Sends email if mirror successful
-logFile = "/var/log/autowget.log"
+
+# Your commit message
+commit_message = 'new mirror' 
+
+# Adds all tracked files; can change to just one file
+add_all = '--all'
+
+# Branch you're committing/pushing to
+branch = 'master'
+
+# Sends email if mirror successful
+# Can use service other than mutt
+email_service = ''
+subject = ''
+email_address = 'user@host.org'
+email = "{0} -s '{1}' {2} < /dev/null".format(email_service, subject, email_address)
+
+# File to write log to
+log_file = "/var/log/autowget.log"
 
 
 ############################################################
 ### FTP OPTIONS - MAKE SURE TO CHANGE THESE IF USING FTP ###
 ############################################################
 
+# Uncomment to use FTP
 #useFtp = True
-useFtp = False
 # If login is anonymous (why it would be is beyond me) then leave the password and username variables alone
-username = "" # FTP server username
-password = "" # FTP server password
-server_path = "" # Path to folder where you want to save file(s)
+server = '' # FTP server... e.g. ftp.debian.org
+username = '' # FTP server username
+password = '' # FTP server password
+server_path = '' # Path to folder where you want to save file(s)
 
 #######################################################
 ### SHOULDN'T NEED TO TOUCH THIS EXCEPT FTP PORTION ###
 #######################################################
 
-sys.stdout = open(logFile, 'a')
-sys.stderr = open(logFile, 'a')
+stdout = open(log_file, 'a')
+stderr = open(log_file, 'a')
 
 def getUrl(urls):
+
 	for url in urls:
-		new_file_path = file_path + url.rsplit('.com', 1)[0].replace('https://', '').replace('http://', '').replace('.', '').replace('www', '').replace('/', '') + ".html"
+		new_file_path = '{0}{1}{2}'.format(file_path, url, '.html')
 		response = urllib.request.urlopen(url)
-		#if (os.path.isfile(new_file_path) == False):
+
 		with open(new_file_path, 'wb') as out_file:
-			shutil.copyfileobj(response, out_file)
-		'''elif (os.path.isfile(new_file_path) == True):
-			for i, urls in enumerate(urls, start=0):
-				number_name = new_file_path.replace('.html', '') + "-%s.html" % i
-				with open(number_name, 'wb') as out_file:
-					shutil.copyfileobj(response, out_file)'''
+			try:
+				copyfileobj(response, out_file)
+			except OSError:
+				remove(new_file_path)
+				copyfileobj(response, out_file)
+
 getUrl(urls)
 
-def gitPush():
+def git_push():
 	git = sh.git.bake(_cwd=repo)
-	print(git.add(addAll))
-	print(git.commit(m=commitMessage))
-	print(git.push('origin', branch))
-	print(git.status())
+	print git.add(add_all)
+	print git.commit(m=commit_message)
+	print git.push('origin', branch)
+	print git.status()
 	try:
-		process = subprocess.Popen(email, stdout=subprocess.PIPE, shell=True)
+		call[(email)]
 	except OSError:
-		print("%s not working" % mutt)
+		print '{0} not working'.format(email_service)
 pass
 
-if useFtp == True:
-	ftp = FTP('ftp.debian.org') # FTP server... e.g. ftp.debian.org
+if useFtp:
+	ftp = FTP(server)
 	ftp.login(username, password)
 	ftp.cwd(server_path)
-	os.chdir(file_path)
-	ftp.storlines("STOR " + file_path, open(file_path, 'r'))
+	chdir(file_path)
+	ftp.storlines('STOR {0}'.format(file_path), open(file_path, 'rb'))
 else: 
-	gitPush()
+	git_push()
 
-print(datetime.datetime.now().strftime("%m-%d-%y"))
+print datetime.now().strftime("%m-%d-%y")
 
